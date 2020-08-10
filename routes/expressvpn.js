@@ -11,6 +11,7 @@ router.get('/status', cors(), (req, res, next) => {
 
 router.post('/connect', cors(), (req, res, next) => {
   const stdout = shell.exec('sudo expressvpn connect').stdout;
+  console.log(">>>>> stdout: ", stdout);
   const succeeded = stdout.length > 0 && stdout.includes('Connected to');
   res.send({ expressvpn: { connected: succeeded } });
 });
