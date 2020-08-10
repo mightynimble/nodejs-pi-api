@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/status', (req, res, next) => {
   const stdout = shell.exec('sudo expressvpn status').stdout;
-  const connected = stdout.length > 0 && stdout.includes('Not connected');
+  const connected = stdout.length > 0 && !stdout.includes('Not connected');
   res.send({ expressvpn: { connected: connected } });
 });
 
